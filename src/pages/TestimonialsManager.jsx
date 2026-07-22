@@ -17,13 +17,15 @@ const formFields = [
   { name: 'company', label: 'Perusahaan', type: 'text', placeholder: 'PT Maju Jaya' },
   { name: 'position', label: 'Jabatan', type: 'text', placeholder: 'CEO' },
   { name: 'content', label: 'Testimoni', type: 'textarea', required: true, placeholder: 'Tulis testimoni...' },
-  { name: 'rating', label: 'Rating (1-5)', type: 'number' },
-  { name: 'photo_url', label: 'URL Foto Klien', type: 'text' },
-  { name: 'is_featured', label: 'Tampilkan di Home', type: 'checkbox' },
+  { name: 'rating', label: 'Rating (1-5)', type: 'number', placeholder: '5' },
+  { name: 'photo_url', label: 'URL Foto Klien', type: 'text', placeholder: 'https://...' },
+  { name: 'order_index', label: 'Urutan Tampil', type: 'number', placeholder: '0' },
+  { name: 'is_featured', label: 'Tampilkan di Home (Featured)', type: 'checkbox' },
+  { name: 'is_active', label: 'Aktif', type: 'checkbox' },
 ];
 
 export default function TestimonialsManager() {
-  const { data, loading, insert, update, remove } = useSupabaseAdmin('testimonials');
+  const { data, loading, insert, update, remove } = useSupabaseAdmin('testimonials', { orderBy: 'order_index', ascending: true });
   const [showForm, setShowForm] = useState(false);
   const [editItem, setEditItem] = useState(null);
   const [deleteItem, setDeleteItem] = useState(null);
@@ -34,7 +36,10 @@ export default function TestimonialsManager() {
     const payload = {
       ...formData,
       rating: formData.rating ? parseInt(formData.rating) : 5,
-      is_featured: formData.is_featured || false,
+      order_index: formData.order_index ? parseInt(formData.order_index) : 0,
+      is_featured: !!formData.is_featured,
+      is_active: formData.is_active !== undefined ? !!formData.is_active : true,
+      updated_at: new Date().toISOString(),
     };
     try {
       if (editItem) {

@@ -25,14 +25,15 @@ const formFields = [
   { name: 'slug', label: 'Slug URL', type: 'text', required: true, placeholder: 'misal: epc-engineering' },
   { name: 'short_description', label: 'Deskripsi Singkat', type: 'textarea', required: true },
   { name: 'full_description', label: 'Deskripsi Lengkap', type: 'textarea' },
-  { name: 'icon', label: 'Icon (Lucide/React Icons)', type: 'text', placeholder: 'Settings' },
+  { name: 'icon', label: 'Icon (Lucide/React Icons)', type: 'text', placeholder: 'FaTools / FaBuilding / FaCog' },
   { name: 'image', label: 'URL Gambar', type: 'text', placeholder: 'https://...' },
+  { name: 'order_index', label: 'Urutan Tampil', type: 'number', placeholder: '0' },
   { name: 'is_featured', label: 'Tampilkan di Beranda (Featured)', type: 'checkbox' },
   { name: 'is_active', label: 'Aktif', type: 'checkbox' },
 ]
 
 export default function ServicesManager() {
-  const { data, loading: fetching, insert, update, remove } = useSupabaseAdmin('services')
+  const { data, loading: fetching, insert, update, remove } = useSupabaseAdmin('services', { orderBy: 'order_index', ascending: true })
   
   const [showForm, setShowForm] = useState(false)
   const [editItem, setEditItem] = useState(null)
@@ -42,11 +43,15 @@ export default function ServicesManager() {
   const handleSubmit = async (formData) => {
     setLoading(true)
     
-    // Default fallback values based on schema
+    const slug = formData.slug || formData.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '')
+
     const payload = {
       ...formData,
-      is_featured: formData.is_featured || false,
-      is_active: formData.is_active !== undefined ? formData.is_active : true,
+      slug,
+      order_index: formData.order_index ? parseInt(formData.order_index) : 0,
+      is_featured: !!formData.is_featured,
+      is_active: formData.is_active !== undefined ? !!formData.is_active : true,
+      updated_at: new Date().toISOString(),
     }
 
     try {

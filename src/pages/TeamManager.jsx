@@ -29,7 +29,7 @@ const formFields = [
 ];
 
 export default function TeamManager() {
-  const { data, loading, insert, update, remove } = useSupabaseAdmin('team_members');
+  const { data, loading, insert, update, remove } = useSupabaseAdmin('team_members', { orderBy: 'order_index', ascending: true });
   const [showForm, setShowForm] = useState(false);
   const [editItem, setEditItem] = useState(null);
   const [deleteItem, setDeleteItem] = useState(null);
@@ -39,8 +39,10 @@ export default function TeamManager() {
     setActionLoading(true);
     const payload = {
       ...formData,
-      is_management: formData.is_management || false,
-      is_active: formData.is_active !== undefined ? formData.is_active : true,
+      order_index: formData.order_index ? parseInt(formData.order_index) : 0,
+      is_management: !!formData.is_management,
+      is_active: formData.is_active !== undefined ? !!formData.is_active : true,
+      updated_at: new Date().toISOString(),
     };
     try {
       if (editItem) {

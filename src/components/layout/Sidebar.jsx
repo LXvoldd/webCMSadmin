@@ -21,18 +21,11 @@ import {
 
 const mainMenus = [
   { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard, path: '/admin/dashboard' },
-  { id: 'pages', label: 'Halaman', icon: FileText, path: '/admin/pages' },
-  { id: 'hero', label: 'Hero Section', icon: Image, path: '/admin/hero' },
-  { id: 'value-props', label: 'Value Props', icon: Lightbulb, path: '/admin/value-props' },
   { id: 'services', label: 'Layanan', icon: Settings, path: '/admin/services' },
-  { id: 'portfolio', label: 'Portfolio', icon: Briefcase, path: '/admin/portfolio' },
-  { id: 'clients', label: 'Clients', icon: Building2, path: '/admin/clients' },
   { id: 'testimonials', label: 'Testimoni', icon: Star, path: '/admin/testimonials' },
+  { id: 'portfolio', label: 'Portfolio', icon: Briefcase, path: '/admin/portfolio' },
   { id: 'team', label: 'Tim', icon: Users, path: '/admin/team' },
   { id: 'blog', label: 'Blog', icon: BookOpen, path: '/admin/blog' },
-  { id: 'jobs', label: 'Lowongan', icon: Newspaper, path: '/admin/jobs' },
-  { id: 'contact', label: 'Pesan Masuk', icon: MessageSquare, path: '/admin/contact' },
-  { id: 'company', label: 'Info Perusahaan', icon: Building2, path: '/admin/company' },
 ];
 
 export default function Sidebar({ isOpen, onClose }) {

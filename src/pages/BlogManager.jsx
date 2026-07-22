@@ -44,11 +44,14 @@ export default function BlogManager() {
   const handleSubmit = async (formData) => {
     setLoading(true)
 
+    const slug = formData.slug || formData.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '')
+
     const payload = {
       ...formData,
+      slug,
       status: formData.status || 'draft',
-      is_featured: formData.is_featured || false,
-      published_at: formData.status === 'published' ? new Date().toISOString() : null,
+      is_featured: !!formData.is_featured,
+      published_at: formData.status === 'published' ? (editItem?.published_at || new Date().toISOString()) : null,
       updated_at: new Date().toISOString()
     }
 

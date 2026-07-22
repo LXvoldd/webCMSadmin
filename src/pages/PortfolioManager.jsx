@@ -47,12 +47,15 @@ export default function PortfolioManager() {
   const handleSubmit = async (formData) => {
     setLoading(true)
     
-    // Default fallback values
+    const slug = formData.slug || formData.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '')
+
     const payload = {
       ...formData,
-      is_featured: formData.is_featured || false,
-      is_active: formData.is_active !== undefined ? formData.is_active : true,
-      completion_date: formData.completion_date || null
+      slug,
+      is_featured: !!formData.is_featured,
+      is_active: formData.is_active !== undefined ? !!formData.is_active : true,
+      completion_date: formData.completion_date || null,
+      updated_at: new Date().toISOString(),
     }
 
     try {
