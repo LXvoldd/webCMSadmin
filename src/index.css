@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0a1630;
+  --color-accent: #ff6b00;
+  --color-bg-light: #f8fafc;
+}
+
+body {
+  @apply bg-bg-light text-slate-800 antialiased;
+}
