@@ -137,7 +137,7 @@ export default function DashboardPage() {
           <h1 className="text-2xl font-bold text-slate-800">Dashboard</h1>
           <p className="text-sm text-slate-500 mt-1">Hi, Admin. Welcome back to Dashboard Admin</p>
         </div>
-        
+
         {/* Filter / Date Picker Dummy */}
         <button className="flex items-center gap-3 px-4 py-2 bg-white rounded-xl shadow-sm border border-slate-100 hover:bg-slate-50 transition-colors">
           <div className="p-1.5 bg-blue-50 rounded-lg">
@@ -195,7 +195,7 @@ export default function DashboardPage() {
                   {latestPosts.length} item
                 </span>
               </div>
-              
+
               {latestPosts.length === 0 ? (
                 <div className="text-center py-8">
                   <FileText className="w-12 h-12 text-slate-300 mx-auto mb-3" />
@@ -232,7 +232,7 @@ export default function DashboardPage() {
                   Total: {totalContent}
                 </span>
               </div>
-              
+
               <div className="space-y-4">
                 {['services', 'testimonials', 'portfolios', 'team_members'].map((key) => {
                   const item = stats.find((stat) => stat.key === key)
@@ -242,7 +242,7 @@ export default function DashboardPage() {
                     portfolios: 'Portofolio',
                     team_members: 'Tim',
                   }[key]
-                  
+
                   const IconComponent = {
                     services: Layers,
                     testimonials: MessageCircle,
@@ -270,73 +270,7 @@ export default function DashboardPage() {
         </>
       )}
 
-      {/* Widget Section */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
-          <div className="flex items-start justify-between">
-            <div>
-              <p className="text-xs font-semibold text-slate-500 mb-2">Total Karyawan</p>
-              <h3 className="text-3xl font-bold text-slate-800">40,689</h3>
-            </div>
-            <div className="p-3 bg-indigo-50 rounded-xl">
-              <Users className="w-6 h-6 text-indigo-500" />
-            </div>
-          </div>
-          <div className="mt-4 flex items-center text-sm">
-            <TrendingUp className="w-4 h-4 text-emerald-500 mr-1.5" />
-            <span className="font-semibold text-emerald-500">8.5%</span>
-            <span className="text-slate-400 ml-1.5">Up from yesterday</span>
-          </div>
-        </div>
-      </div>
 
-      {/* Inbox Section */}
-      <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
-        {/* Inbox Toolbar */}
-        <div className="p-4 border-b border-slate-100 flex items-center justify-between">
-          <div className="relative w-full max-w-sm">
-            <input 
-              type="text" 
-              placeholder="Search mail" 
-              className="w-full pl-10 pr-4 py-2 bg-slate-50 border-none rounded-xl text-sm focus:ring-1 focus:ring-slate-200 focus:outline-none"
-            />
-            <Search className="w-4 h-4 text-slate-400 absolute left-4 top-2.5" />
-          </div>
-          <div className="flex items-center gap-2">
-            <button className="p-2 border border-slate-200 rounded-lg text-slate-600 hover:bg-slate-50"><Archive className="w-4 h-4" /></button>
-            <button className="p-2 border border-slate-200 rounded-lg text-slate-600 hover:bg-slate-50"><AlertCircle className="w-4 h-4" /></button>
-            <button className="p-2 border border-slate-200 rounded-lg text-slate-600 hover:bg-slate-50"><Trash2 className="w-4 h-4" /></button>
-          </div>
-        </div>
-        
-        {/* Inbox List */}
-        <div className="divide-y divide-slate-50">
-          {dummyInbox.map((item) => (
-            <div key={item.id} className="flex items-center p-4 hover:bg-slate-50/50 transition-colors cursor-pointer group">
-              <input type="checkbox" className="mr-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500" />
-              <button className="mr-4 text-slate-300 hover:text-amber-400 focus:outline-none">
-                <Star className={`w-5 h-5 ${item.starred ? 'fill-amber-400 text-amber-400' : ''}`} />
-              </button>
-              <div className="w-48 flex-shrink-0">
-                <span className="text-sm font-semibold text-slate-800">{item.name}</span>
-              </div>
-              {item.tag && (
-                <div className="w-24 flex-shrink-0">
-                  <span className={`text-[10px] font-bold px-2.5 py-1 rounded-md ${getTagColor(item.tag)}`}>
-                    {item.tag}
-                  </span>
-                </div>
-              )}
-              <div className="flex-1 truncate pr-4">
-                <span className="text-sm text-slate-600">{item.subject}</span>
-              </div>
-              <div className="text-xs text-slate-400 font-medium whitespace-nowrap">
-                {item.time}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
     </div>
   )
 }
