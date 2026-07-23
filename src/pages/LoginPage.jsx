@@ -36,10 +36,10 @@ export default function LoginPage() {
           {/* Header/Logo section */}
           <div className="mb-10 flex items-center gap-3">
             <div className="w-20">
-               {/* Dummy Logo Hexagon */}
+               {/* Logo Perusahaan */}
               <img 
               src="https://cdn.projects.co.id/upload/usrbd5947/2024021565cd7fe35a28a.jpg" 
-              alt="" 
+              alt="PT. AKMI KARYA GLOBAL Logo" 
               className="w-36 h-auto object-contain hover:scale-105 transition-transform"
             />
             </div>
@@ -132,14 +132,14 @@ export default function LoginPage() {
           <div className="mb-6 flex h-48 w-48 items-center justify-center rounded-2xl bg-white pt-3 shadow-2xl">
               <img 
               src="https://cdn.projects.co.id/upload/usrbd5947/2024021565cd7fe35a28a.jpg" 
-              alt="" 
+              alt="PT. AKMI KARYA GLOBAL Logo" 
               className="w-36 h-auto object-contain hover:scale-105 transition-transform"
             />
           </div>
           <h2 className="text-4xl font-bold text-white tracking-wide">
-            <h1>Selamat Datang</h1>
-            <p className='text-[25px] pt-3'>di Sistem Admin</p>
+            Selamat Datang
           </h2>
+          <p className='text-[25px] pt-3 text-white'>di Sistem Admin</p>
         </div>
       </div>
     </div>
